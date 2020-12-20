@@ -71,6 +71,7 @@ export default {
       const { token } = data.autenticarUsuario;
       localStorage.setItem('token', token);  
       console.log(token);
+      this.$router.push({name: 'dashboard'});
     }
   }
 }
