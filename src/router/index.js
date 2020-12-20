@@ -9,14 +9,15 @@ const routes = [
   {
     path: '/',
     name: 'auth',
-    component: AuthView
+    component: AuthView,
   },
   {
     path: '/dashboard',
     name: 'dashboard',
     component: DashboardView,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      layout: 'principal'
     }
   }
 ]

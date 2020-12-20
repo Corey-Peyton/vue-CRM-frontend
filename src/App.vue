@@ -1,21 +1,18 @@
 <template>
-
-<div class="grid grid-cols-4 md:grid-cols-6 gap-2 md:gap-x-60">
-  <div class="col-span-4 md:col-span-1">
-    <Sidebar />
-  </div>
-  <div class="col-span-4 md:col-span-5 bg-gray-200">
-      <router-view />
-  </div>
-</div>
-
+  <component :is="layout"></component>
 </template>
 
 <script>
-import Sidebar from '../src/components/Sidebar';
+import DefaultLayout from '../src/components/layouts/DefaultLayout';
+import PrincipalLayout from '../src/components/layouts/PrincipalLayout';
+
+import { mapState } from "vuex";
 export default {
-  components: {
-    Sidebar
+  components: {DefaultLayout, PrincipalLayout},
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || 'default') + '-layout';
+    }
   }
 }
 </script>

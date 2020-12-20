@@ -1,11 +1,12 @@
 <template>
-    <h1>Home</h1>
+  <div class="mt-12">
+      <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
 export default {
-  name: 'DashboardView',
+
 }
 </script>
 
