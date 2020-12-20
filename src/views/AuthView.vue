@@ -64,7 +64,6 @@
 
 <script>
 import { AUTHENTICATE_USER, NEW_USER } from '../graphql/mutations/userMutations';
-import gql from 'graphql-tag';
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import Spiner from '../components/Spiner';
 
@@ -99,20 +98,13 @@ export default {
           return;
       }
 
-      if (this.user.email === null || this.user.password === null) return
-      const { data } = await this.$apollo.mutate({
-        mutation: AUTHENTICATE_USER,
-        variables: {
-          input: {
-            email: this.user.email,
-            password: this.user.password
-          }
-        }
+      await this.$store.dispatch('auth/login', {
+        email: this.user.email,
+        password: this.user.password,
+        apolloClient: this.$apollo
       });
+      
       this.isLoading = false;
-      const { token } = data.autenticarUsuario;
-      localStorage.setItem('token', token);  
-      this.$router.push({name: 'dashboard'});
     }
   }
 }

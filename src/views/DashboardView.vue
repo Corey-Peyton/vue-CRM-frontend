@@ -1,5 +1,7 @@
 <template>
-    <h1>Home</h1>
+    <div class="flex justify-center">
+      <h1 class="block w-full text-3xl text-left pl-5 pt-5">Home</h1>
+    </div>
 </template>
 
 <script>
