@@ -6,7 +6,7 @@
       <td class="sm:w-1/5 border px-4 py-2 text-center">
             <button
                 type="button" 
-                class="flex justify-center items-center bg-red-800 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
+                class="flex justify-center items-center bg-red-500 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
             >
                 Eliminar
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-2">
@@ -17,7 +17,7 @@
       <td class="sm:w-1/5 border px-4 py-2 text-center">
             <button
                 type="button"
-                class="flex justify-center items-center bg-green-600 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
+                class="flex justify-center items-center bg-blue-500 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
             >
                 Editar
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-2">
