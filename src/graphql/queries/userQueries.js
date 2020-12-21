@@ -10,3 +10,15 @@ export const GET_USER = gql`
         }
     }
 `;
+
+export const GET_USER_CUSTOMERS = gql`
+  query obtenerClientesVendedor {
+    obtenerClientesVendedor {
+      id
+      nombre
+      apellido
+      email
+      empresa
+    }
+  }
+`;
