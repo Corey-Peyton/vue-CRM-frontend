@@ -1,9 +1,9 @@
 <template>
-  <tr>
-      <td class="border px-4 py-2 text-center">{{customer.nombre}} - {{customer.apellido}}</td>
-      <td class="border px-4 py-2 text-center">{{customer.empresa}}</td>
-      <td class="border px-4 py-2 text-center">{{customer.email}}</td>
-      <td class="border px-4 py-2 text-center">
+  <tr class="flex flex-col border-2 border-white sm:border-0 flex-nowrap sm:flex-row mb-2 sm:mb-0">
+      <td class="sm:w-1/5 border px-4 py-2 text-center">{{customer.nombre}}  {{customer.apellido}}</td>
+      <td class="sm:w-1/5 border px-4 py-2 text-center">{{customer.empresa}}</td>
+      <td class="sm:w-2/5 border px-4 py-2 text-center">{{customer.email}}</td>
+      <td class="sm:w-1/5 border px-4 py-2 text-center">
             <button
                 type="button" 
                 class="flex justify-center items-center bg-red-800 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
@@ -14,7 +14,7 @@
                 </svg>
             </button>
       </td>
-      <td class="border px-4 py-2 text-center">
+      <td class="sm:w-1/5 border px-4 py-2 text-center">
             <button
                 type="button"
                 class="flex justify-center items-center bg-green-600 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"

@@ -1,15 +1,15 @@
 <template>
-  <table class="table-auto shadow-md mt-10 w-full w-lg">
-      <thead class="bg-gray-800">
-          <tr class="text-white">
-              <th class="w-1/5 py-2">Nombre</th>
-              <th class="w-1/5 py-2">Empresa</th>
-              <th class="w-1/5 py-2">Email</th>
-              <th class="w-1/5 py-2">Eliminar</th>
-              <th class="w-1/5 py-2">Editar</th>
+  <table class="w-full flex flex-col flex-nowrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
+      <thead class="hidden sm:flex-row sm:flex text-white font-bold text-sm">
+          <tr class="w-full bg-gray-800 sm:flex rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+              <th class="w-1/5 p-3 text-center">Nombre</th>
+              <th class="w-1/5 p-3 text-center">Empresa</th>
+              <th class="w-1/5 p-3 text-center">Email</th>
+              <th class="w-1/5 p-3 text-center">Eliminar</th>
+              <th class="w-1/5 p-3 text-center">Editar</th>
           </tr>
       </thead>
-      <tbody class="bg-white">
+      <tbody class="flex-1 sm:flex-none">
         <Customer 
             v-for="(customer, index) in customerList" 
             :key="index"

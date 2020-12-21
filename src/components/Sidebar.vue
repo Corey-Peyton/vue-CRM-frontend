@@ -1,9 +1,9 @@
 <template>
-    <div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
-        <div class="flex flex-col w-full md:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0">
+    <div class="sm:flex flex-col sm:flex-row sm:min-h-screen w-full">
+        <div class="flex flex-col w-full sm:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0">
             <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
                 <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">CRM Cliente</a>
-                <button class="rounded-lg md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="toggleShowMenu">
+                <button class="rounded-lg sm:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="toggleShowMenu">
                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
                         <path 
                             v-show="!showMenu" 
@@ -20,7 +20,7 @@
                     </svg>
                 </button>
             </div>
-            <nav :class="{'block': showMenu, 'hidden': !showMenu}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
+            <nav :class="{'block': showMenu, 'hidden': !showMenu}" class="flex-grow sm:block px-4 pb-4 sm:pb-0 sm:overflow-y-auto">
                 <sidebar-link path="dashboard">Clientes</sidebar-link>
                 <sidebar-link path="productos">Productos</sidebar-link>
                 <sidebar-link path="pedidos">Pedidos</sidebar-link>
@@ -33,7 +33,7 @@
                         class="block text-center md:text-left px-4 py-2 mt-2 text-sm font-semibold 
                                 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 
                                 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white 
-                                dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 
+                                dark-mode:text-gray-200 sm:mt-0 hover:text-gray-900 focus:text-gray-900 
                                 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
                         href="#"
                     >

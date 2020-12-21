@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AuthView from '../views/AuthView.vue';
 import DashboardView from '../views/DashboardView.vue';
-import ProductosView from '../views/ProductosView.vue';
+import ProductsView from '../views/ProductsView.vue';
 import store from '../store';
 
 Vue.use(VueRouter)
@@ -27,8 +27,8 @@ const routes = [
   },
   {
     path: '/productos',
-    name: 'productos',
-    component: ProductosView,
+    name: 'products',
+    component: ProductsView,
     meta: {
       requiresAuth: true,
       layout: 'principal'

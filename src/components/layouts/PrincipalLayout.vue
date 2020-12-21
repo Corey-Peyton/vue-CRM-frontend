@@ -1,9 +1,9 @@
 <template>
-    <div class="grid grid-cols-4 md:grid-cols-6 gap-2 md:gap-x-60">
-        <div class="col-span-4 md:col-span-1">
+    <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-x-60">
+        <div class="col-span-4 sm:col-span-1">
             <Sidebar />
         </div>
-        <div class="col-span-4 md:col-span-5 bg-gray-200 h-screen">
+        <div class="col-span-4 sm:col-span-5 bg-gray-200 h-full">
             <router-view />
         </div>
     </div>
