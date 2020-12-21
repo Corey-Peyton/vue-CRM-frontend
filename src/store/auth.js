@@ -14,7 +14,8 @@ const mutations = {
         state.user = user;
     },
     LOGOUT_USER(state) {
-        state.token = null && localStorage.removeItem('apollo-token');
+        state.token = null; 
+        state.user = null;
     }
 }
 
@@ -34,12 +35,16 @@ const actions = {
             //const token = JSON.stringify(data.autenticarUsuario.token);
             commit('SET_TOKEN', token);
             commit('LOGIN_USER', {email, password});
-            localStorage.setItem('apollo-token', token);
+
             router.push({name: 'dashboard'});
         } catch (error) {
             console.error(error);
         }  
     }, 
+
+    logout({ commit }) {
+        commit('LOGOUT_USER');
+    }
 }
 
 const getters = {

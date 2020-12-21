@@ -8,6 +8,9 @@ import store from '../store';
 Vue.use(VueRouter)
 
 const routes = [
+  { 
+    path: '*', 
+    redirect: '/' },
   {
     path: '/',
     name: 'auth',

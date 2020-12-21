@@ -26,7 +26,9 @@
                 <sidebar-link path="pedidos">Pedidos</sidebar-link>
                 <hr>
                 <sidebar-link path="nosotros">Nosotros</sidebar-link>
-                <button class="w-full">
+                <button 
+                    @click="doLogout"
+                    class="w-full">
                     <a 
                         class="block text-center md:text-left px-4 py-2 mt-2 text-sm font-semibold 
                                 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 
@@ -45,6 +47,7 @@
 
 <script>
 import SidebarLink from './SidebarLink.vue';
+import { mapActions } from "vuex";
 export default {
     components: { SidebarLink },
     data() {
@@ -53,9 +56,14 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ['logout']),
         toggleShowMenu() {
             this.showMenu = !this.showMenu;
-        }, 
+        },
+        doLogout() {
+            this.logout();
+            this.$router.push({name: 'auth'});
+        } 
     }
 }
 </script>
