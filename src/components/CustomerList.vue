@@ -1,12 +1,12 @@
 <template>
-  <table class="w-full flex flex-col flex-nowrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
-      <thead class="hidden sm:flex-row sm:flex text-white font-bold text-sm">
+  <table class="custom-table">
+      <thead class="custom-table-head">
           <tr class="w-full bg-gray-800 sm:flex rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-              <th class="w-1/5 p-3 text-center">Nombre</th>
-              <th class="w-1/5 p-3 text-center">Empresa</th>
-              <th class="w-1/5 p-3 text-center">Email</th>
-              <th class="w-1/5 p-3 text-center">Eliminar</th>
-              <th class="w-1/5 p-3 text-center">Editar</th>
+              <th class="custom-table-header-item">Nombre</th>
+              <th class="custom-table-header-item">Empresa</th>
+              <th class="custom-table-header-item">Email</th>
+              <th class="custom-table-header-item">Eliminar</th>
+              <th class="custom-table-header-item">Editar</th>
           </tr>
       </thead>
       <tbody class="flex-1 sm:flex-none">
@@ -35,7 +35,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
