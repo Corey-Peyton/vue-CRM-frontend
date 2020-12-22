@@ -5,6 +5,7 @@
       <td class="custom-table-row-item sm:w-2/6">{{customer.email}}</td>
       <td class="custom-table-row-item sm:w-1/6">
             <button
+                @click="remove(customer.id)"
                 type="button" 
                 class="custom-table-button bg-red-500"
             >
@@ -27,6 +28,7 @@
 <script>
 import DeleteIcon from '../components/icons/DeleteIcon';
 import EditIcon from '../components/icons/EditIcon';
+import { mapActions } from "vuex";
 export default {
     components: {
         DeleteIcon,
@@ -36,6 +38,23 @@ export default {
         customer: {
             type: Object,
             required: true
+        }
+    }, 
+    methods: {
+        ...mapActions('customers', ['deleteCustomer']),
+        async remove(id) {
+            //console.log(`delete customer with id: ${id}`);
+            await this.deleteCustomer({
+                id,
+                apolloClient: this.$apollo
+            })
+            .then(message => {
+                this.$toast.success(message);
+            })
+            .catch(error => {
+                console.error(error.message);
+                this.$toast.error(error.message);
+            })
         }
     }
 }
