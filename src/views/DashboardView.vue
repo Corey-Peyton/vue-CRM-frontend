@@ -20,10 +20,10 @@ export default {
     this.getUserCustomers({apolloClient:this.$apollo});
   },
   computed: {
-    ...mapState('user', ['customers'])
+    ...mapState('customers', ['customers'])
   },
   methods: {
-    ...mapActions('user', ['getUserCustomers']),
+    ...mapActions('customers', ['getUserCustomers']),
   }
 }
 </script>
