@@ -29,6 +29,7 @@
 import DeleteIcon from '../components/icons/DeleteIcon';
 import EditIcon from '../components/icons/EditIcon';
 import { mapActions } from "vuex";
+import Swal from 'sweetalert2';
 export default {
     components: {
         DeleteIcon,
@@ -43,18 +44,41 @@ export default {
     methods: {
         ...mapActions('customers', ['deleteCustomer']),
         async remove(id) {
+
+            Swal.fire({
+                title: 'Deseas eliminar este cliente?',
+                text: "Esta acción no podra ser revertida!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'No, Cancelar',
+                confirmButtonText: 'Si, Eliminar!'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await this.deleteCustomer({
+                        id,
+                        apolloClient: this.$apollo
+                    })
+                    .then(message => {
+                        Swal.fire(
+                            'Eliminado!',
+                            message,
+                            'success'
+                        );
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                        Swal.fire(
+                            'Eliminado!',
+                            error.message,
+                            'error'
+                        );
+                    }); 
+                }            
+            }) 
             //console.log(`delete customer with id: ${id}`);
-            await this.deleteCustomer({
-                id,
-                apolloClient: this.$apollo
-            })
-            .then(message => {
-                this.$toast.success(message);
-            })
-            .catch(error => {
-                console.error(error.message);
-                this.$toast.error(error.message);
-            })
+            
         }
     }
 }
