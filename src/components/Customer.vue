@@ -61,19 +61,20 @@ export default {
                         apolloClient: this.$apollo
                     })
                     .then(message => {
-                        Swal.fire(
-                            'Eliminado!',
-                            message,
-                            'success'
-                        );
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Cliente eliminado',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     })
                     .catch(error => {
                         console.error(error.message);
-                        Swal.fire(
-                            'Eliminado!',
-                            error.message,
-                            'error'
-                        );
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salió mal!',
+                        });
                     }); 
                 }            
             }) 
