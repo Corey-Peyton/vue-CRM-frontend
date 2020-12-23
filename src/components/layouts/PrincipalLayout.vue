@@ -3,7 +3,7 @@
         <div class="col-span-4 sm:col-span-1">
             <Sidebar />
         </div>
-        <div class="col-span-4 sm:col-span-5 bg-gray-200 h-full">
+        <div class="col-span-4 sm:col-span-5 bg-gray-50 h-full">
             <router-view />
         </div>
     </div>
