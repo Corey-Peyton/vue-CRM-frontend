@@ -1,5 +1,5 @@
 import { GET_USER_CUSTOMERS } from "../graphql/queries/userQueries";
-import { DELETE_CUSTOMER } from "../graphql/mutations/customerMutations";
+import { NEW_CUSTOMER, DELETE_CUSTOMER } from "../graphql/mutations/customerMutations";
 
 const state = {
     customers: []
@@ -8,6 +8,12 @@ const state = {
 const mutations = {
     SET_CUSTOMERS(state, customers) {
         state.customers = customers;
+    },
+    ADD_CUSTOMER(state, customer) {
+        state.customers.push(customer);
+    },
+    DELETE_CUSTOMER(state, idCustomer) {
+        state.customers = state.customers.filter(customer => customer.id !== idCustomer);
     }
 }
 
@@ -22,25 +28,36 @@ const actions = {
         }
     },
 
-    async deleteCustomer({commit, state}, { id, apolloClient }) {
+    async addCustomer({commit}, {customer, apolloClient}) {
+        try {
+            const { data } = await apolloClient.mutate({
+                mutation: NEW_CUSTOMER,
+                variables: {
+                    input: { 
+                        nombre: customer.name,
+                        apellido: customer.lastName,
+                        empresa: customer.company,
+                        email: customer.email,
+                        telefono: customer.phone
+                    }
+                }
+            });
+            commit('ADD_CUSTOMER', data.nuevoCliente);
+            return
+        } catch (error) {
+            throw Error(error);
+        }
+    },
+
+    async deleteCustomer({ commit }, { id, apolloClient }) {
         try {
             const { data } = await apolloClient.mutate({
                 mutation: DELETE_CUSTOMER,
                 variables: {
                     id
-                },
-                update: (cache) => {
-                    const {obtenerClientesVendedor} = cache.readQuery({ query: GET_USER_CUSTOMERS});
-
-                    cache.writeQuery({
-                        query: GET_USER_CUSTOMERS,
-                        data: {
-                            obtenerClientesVendedor: obtenerClientesVendedor.filter(cliente => cliente.id !== id)
-                        }
-                    })
                 }
             });
-            commit('SET_CUSTOMERS', state.customers.filter(customer => customer.id !== id));
+            commit('DELETE_CUSTOMER', id);
             return data.eliminarCliente;
         } catch (error) {
             throw Error(error);
