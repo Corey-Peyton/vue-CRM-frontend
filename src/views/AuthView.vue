@@ -64,7 +64,7 @@
 
 <script>
 import { AUTHENTICATE_USER, NEW_USER } from '../graphql/mutations/userMutations';
-import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { required, email, minLength } from "vuelidate/lib/validators";
 import Spiner from '../components/Spiner';
 
 
@@ -95,6 +95,7 @@ export default {
       // stop here if form is invalid
       this.$v.$touch();
       if (this.$v.$invalid) {
+          this.isLoading = false;
           return;
       }
 
