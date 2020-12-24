@@ -77,9 +77,7 @@ export default {
                         });
                     }); 
                 }            
-            }) 
-            //console.log(`delete customer with id: ${id}`);
-            
+            })            
         }
     }
 }
