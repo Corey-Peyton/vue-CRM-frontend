@@ -1,6 +1,7 @@
 import { GET_USER_CUSTOMERS } from "../graphql/queries/userQueries";
 import { NEW_CUSTOMER, DELETE_CUSTOMER } from "../graphql/mutations/customerMutations";
 
+
 const state = {
     customers: []
 }
@@ -42,8 +43,7 @@ const actions = {
                     }
                 }
             });
-            commit('ADD_CUSTOMER', data.nuevoCliente);
-            return
+
         } catch (error) {
             throw Error(error);
         }
