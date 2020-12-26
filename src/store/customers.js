@@ -28,7 +28,7 @@ const actions = {
         try {
             const { data } = await apolloClient.query({ 
                     query: GET_USER_CUSTOMERS,
-                    fetchPolicy: 'no-cache'
+                    //fetchPolicy: 'no-cache'
              });
 
             commit('SET_CUSTOMERS', data.obtenerClientesVendedor);
@@ -41,7 +41,6 @@ const actions = {
         try {
             const { data } = await apolloClient.query({
                 query: GET_CUSTOMER,
-                fetchPolicy: 'no-cache',
                 variables: {
                     id
                 }
@@ -64,7 +63,7 @@ const actions = {
 
     async addCustomer(context, {customer, apolloClient}) {
         try {
-            await apolloClient.mutate({
+            const { data } = await apolloClient.mutate({
                 mutation: NEW_CUSTOMER,
                 variables: {
                     input: { 
@@ -75,7 +74,7 @@ const actions = {
                         telefono: customer.phone
                     }
                 },
-                /* update: (cache, { data: { nuevoCliente } }) => {
+                update: (cache, { data: { nuevoCliente } }) => {
                     const { obtenerClientesVendedor } = cache.readQuery({ query: GET_USER_CUSTOMERS});
 
                     cache.writeQuery({
@@ -84,7 +83,7 @@ const actions = {
                             obtenerClientesVendedor: [ ...obtenerClientesVendedor, nuevoCliente]
                         }
                     })
-                } */ 
+                }  
             });
 
         } catch (error) {
@@ -93,7 +92,7 @@ const actions = {
     },
 
     async updateCustomer(context , {customer, apolloClient}) {
-        await apolloClient.mutate({
+        const { data } = await apolloClient.mutate({
             mutation: UPDATE_CUSTOMER,
             variables: {
                 id: customer.id,
@@ -104,6 +103,19 @@ const actions = {
                     email: customer.email,
                     empresa: customer.company
                 }
+            },
+            update:(cache, { data } ) => {
+                if (!data) return
+                const { actualizarCliente } = data;
+                const { obtenerClientesVendedor } = cache.readQuery({ query: GET_USER_CUSTOMERS});
+                
+                cache.writeQuery({
+                    query: GET_USER_CUSTOMERS,
+                    data: {
+                        obtenerClientesVendedor: [...obtenerClientesVendedor, actualizarCliente]
+                    }
+                });
+
             }
         });
     },
@@ -115,6 +127,17 @@ const actions = {
                 variables: {
                     id
                 },
+                update:(cache) => {
+                    const { obtenerClientesVendedor } = cache.readQuery({ query: GET_USER_CUSTOMERS});
+
+                    cache.writeQuery({
+                        query: GET_USER_CUSTOMERS,
+                        data: {
+                            obtenerClientesVendedor: obtenerClientesVendedor.filter(cliente => cliente.id !== id)
+                        }
+                    });
+                }
+
             });
             commit('DELETE_CUSTOMER', id);
             return data.eliminarCliente;
