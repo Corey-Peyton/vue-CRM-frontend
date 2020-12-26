@@ -1,6 +1,6 @@
 <template>
     <div class="sm:flex flex-col sm:flex-row sm:min-h-screen w-full">
-        <div class="flex flex-col w-full sm:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0">
+        <div class="flex flex-col w-full sm:w-64 text-gray-700 bg-indigo-100 dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0">
             <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
                 <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">CRM Cliente</a>
                 <button class="rounded-lg sm:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="toggleShowMenu">
@@ -21,23 +21,48 @@
                 </button>
             </div>
             <nav :class="{'block': showMenu, 'hidden': !showMenu}" class="flex-grow sm:block px-4 pb-4 sm:pb-0 sm:overflow-y-auto">
-                <sidebar-link path="dashboard">Clientes</sidebar-link>
-                <sidebar-link path="productos">Productos</sidebar-link>
-                <sidebar-link path="pedidos">Pedidos</sidebar-link>
-                <hr>
-                <sidebar-link path="nosotros">Nosotros</sidebar-link>
+                <sidebar-link 
+                    :active="routeName === 'dashboard'" 
+                    path="dashboard"
+                >
+                    <customers-icon width="20" class="mr-3"/>
+                    <p style="width:50px" class="text-left">Clientes</p>
+                </sidebar-link>
+                <sidebar-link 
+                    :active="routeName === 'products'" 
+                    path="productos"
+                >
+                    <products-icon width="20" class="mr-3"/>
+                    <p style="width:50px" class="text-left">Productos</p>
+                </sidebar-link>
+                <sidebar-link 
+                    :active="routeName === 'pedidos'" 
+                    path="pedidos"
+                >
+                    <orders-icon width="20" class="mr-3"/>
+                    <p style="width:50px" class="text-left">Pedidos</p>
+                </sidebar-link>
+                <hr class="border border-blue-300 mx-2">
+                <sidebar-link 
+                    :active="routeName === 'about'" 
+                    path="nosotros"
+                >
+                    <about-us-icon width="20" class="mr-3"/>
+                    <p style="width:50px" class="text-left">Nosotros</p>
+                    
+                </sidebar-link>
                 <button 
                     @click="doLogout"
                     class="w-full">
                     <a 
-                        class="block text-center sm:text-left px-4 py-2 mt-2 text-sm font-semibold 
-                                bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 
+                        class="exit-button dark-mode:bg-transparent dark-mode:hover:bg-gray-600 
                                 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white 
-                                dark-mode:text-gray-200 sm:mt-0 hover:text-gray-900 focus:text-gray-900 
-                                hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+                                dark-mode:text-gray-200 sm:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-400 
+                                focus:bg-gray-400 focus:outline-none focus:shadow-outline" 
                         href="#"
                     >
-                        Salir
+                        <logout-icon width="20" class="mr-3"/>
+                        <p style="width:50px" class="text-left">Salir</p> 
                     </a>
                 </button>
             </nav>
@@ -47,12 +72,29 @@
 
 <script>
 import SidebarLink from './SidebarLink.vue';
+import CustomersIcon from '../components/icons/CustomersIcon';
+import ProductsIcon from '../components/icons/ProductsIcon';
+import OrdersIcon from '../components/icons/OrdersIcon';
+import AboutUsIcon from '../components/icons/AboutUsIcon';
+import LogoutIcon from '../components/icons/LogoutIcon';
 import { mapActions } from "vuex";
 export default {
-    components: { SidebarLink },
+    components: { 
+        SidebarLink, 
+        CustomersIcon, 
+        ProductsIcon,
+        OrdersIcon,
+        AboutUsIcon,
+        LogoutIcon 
+    },
     data() {
         return {
             showMenu: false
+        }
+    },
+    computed: {
+        routeName() {
+            return this.$route.name;
         }
     },
     methods: {
@@ -67,3 +109,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.active-item {
+    background-color : black
+}
+</style>
