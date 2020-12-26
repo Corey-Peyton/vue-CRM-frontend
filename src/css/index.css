@@ -2,44 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+.sidebar-container {
+  @apply sm:flex flex-col sm:flex-row sm:min-h-screen w-full;
+}
+
+.sidebar {
+  @apply flex flex-col w-full sm:w-64 text-gray-700 bg-indigo-100  flex-shrink-0;
+}
+
+.sidebar:dark-mode {
+  @apply text-gray-200 bg-gray-800;
+}
+
+.sidebar-header {
+  @apply flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between;
+}
+
+.sedebar-header-link {
+  @apply text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg 
+            focus:outline-none focus:shadow
+}
 
 .custom-table {
-    @apply w-full flex flex-col flex-nowrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5
+  @apply w-full flex flex-col flex-nowrap sm:bg-white rounded-lg overflow-hidden 
+            sm:shadow-lg my-5;
 }
 
 .custom-table-head {
-    @apply hidden sm:flex-row sm:flex text-white font-bold text-sm
+  @apply hidden sm:flex-row sm:flex text-white font-bold text-sm;
 }
 
 .custom-table-header-item {
-    @apply p-3 text-center
+  @apply p-3 text-center;
 }
 
 .custom-table-row-item {
-    @apply border sm:px-4 sm:py-2 text-center 
+  @apply border sm:px-4 sm:py-2 text-center;
 }
 
 .custom-table-button {
-    @apply flex justify-center items-center py-2 px-4 w-full text-white  text-xs uppercase rounded font-bold
+  @apply flex justify-center items-center py-2 px-4 w-full text-white  text-xs uppercase 
+            rounded font-bold;
 }
 
 .section-title {
-    @apply block w-full text-2xl text-gray-800 font-light text-left pl-5 pt-5
+  @apply block w-full text-2xl text-gray-800 font-light text-left pl-5 pt-5;
 }
 
 .section-links {
-    @apply bg-blue-800 py-2 px-5 mt-5 ml-3 inline-block text-white rounded text-sm hover:bg-gray-800 mb-3 uppercase font-bold
+  @apply bg-blue-800 py-2 px-5 mt-5 ml-3 inline-block text-white rounded text-sm 
+            hover:bg-gray-800 mb-3 uppercase font-bold;
 }
 
 .input-form {
-    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight 
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
+            leading-tight;
 }
 
 .label-input-form {
-    @apply block text-gray-700 text-sm font-bold mb-2
+  @apply block text-gray-700 text-sm font-bold mb-2;
 }
 
 .exit-button {
-    @apply flex justify-center sm:justify-start py-2 pr-11 mt-2 text-sm font-semibold bg-transparent rounded-lg 
+  @apply flex justify-center sm:justify-start py-2 pr-11 text-sm font-semibold 
+            bg-transparent rounded-lg hover:text-gray-900 hover:bg-gray-400
+            focus:text-gray-900 focus:bg-gray-400 focus:outline-none focus:shadow
+}
+
+.exit-button:dark-mode {
+  @apply bg-transparent focus:bg-gray-600 focus:text-white text-gray-200 sm:mt-0 
+            hover:text-white hover:bg-gray-600
 }
 
