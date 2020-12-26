@@ -3,7 +3,11 @@
       <h1 class="section-title">Clientes</h1>
     
       <router-link to="/nuevo-cliente" class="section-links">Nuevo Cliente</router-link>
-      <customer-table :customerList="customers"></customer-table>
+      <customer-table 
+          v-if="customers" 
+          :customerList="customers"
+      ></customer-table>
+      <div v-else><h3>No hay clientes cargados</h3></div>
     </div>
 </template>
 
@@ -16,14 +20,16 @@ export default {
   components: {
     CustomerTable
   },
-  mounted() {
-    this.getUserCustomers({apolloClient:this.$apollo});
+  async mounted() {
+    this.$store.commit('customers/SET_CURRENT_CUSTOMER', null);
+    await this.getUserCustomers({apolloClient:this.$apollo});
   },
   computed: {
     ...mapState('customers', ['customers'])
   },
   methods: {
     ...mapActions('customers', ['getUserCustomers']),
+    
   }
 }
 </script>
