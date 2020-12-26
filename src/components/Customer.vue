@@ -27,15 +27,16 @@
             </div>   
         </td>
         <td class="border sm:px-4 sm:py-2 text-center sm:w-1/6">
-                <div class="h-full sm:flex sm:flex-col sm:justify-center">
-                    <button
-                            type="button"
-                            class="custom-table-button bg-azul"
-                        >
-                            Editar
-                            <edit-icon />
-                    </button>
-                </div>
+            <div class="h-full sm:flex sm:flex-col sm:justify-center">
+                <button
+                    @click="updateCustomer"
+                    type="button"
+                    class="custom-table-button bg-azul"
+                >
+                    Editar
+                    <edit-icon />
+                </button>
+            </div>
         </td>       
   </tr>
 </template>
@@ -93,6 +94,12 @@ export default {
                     }); 
                 }            
             })            
+        },
+
+        updateCustomer() {
+            this.$router.push({ name: 'updateCustomer', params: { 
+                customerId: this.customer.id, 
+            }});
         }
     }
 }

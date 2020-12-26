@@ -4,6 +4,7 @@ import AuthView from '../views/AuthView.vue';
 import DashboardView from '../views/DashboardView.vue';
 import ProductsView from '../views/ProductsView.vue';
 import NewCustomerView from '../views/NewCustomerView.vue';
+import UpdateCustomerView from '../views/UpdateCustomerView.vue';
 import store from '../store';
 
 Vue.use(VueRouter)
@@ -39,6 +40,15 @@ const routes = [
     path: '/nuevo-cliente',
     name: 'newCustomer',
     component: NewCustomerView,
+    meta: {
+      requiresAuth: true,
+      layout: 'principal'
+    }
+  },
+  {
+    path: '/customer/:customerId',
+    name: 'updateCustomer',
+    component: UpdateCustomerView,
     meta: {
       requiresAuth: true,
       layout: 'principal'

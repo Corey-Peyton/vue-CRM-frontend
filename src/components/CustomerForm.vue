@@ -2,7 +2,7 @@
   <div class="flex justify-center mt-5">
         <div class="w-full max-w-sm sm:max-w-lg ">
             <form
-                @submit.prevent="registerCustomer" 
+                @submit.prevent="submitForm" 
                 class="bg-gray-200 shadow-md px-8 pt-6 pb-8 mb-4"
             >
                 <div class="mb-4">
@@ -86,13 +86,16 @@
                         </div>
                 </div>
 
+
                 <button 
-                    v-if=" !isLoading"
+                    v-if=" !this.$parent.isLoading"
                     class="bg-gray-800 w-full mt-5 p-2 text-white uppercase hover:bg-gray-900" 
                     type="submit">
-                    Registrar Cliente
+                    {{myCustomer ? 'Actualizar' : 'Registrar' }} Cliente
                 </button>
+                
                 <Spiner v-else></Spiner>
+
             </form>
         </div>
   </div>
@@ -101,18 +104,15 @@
 <script>
 import { required, email, minLength, numeric } from "vuelidate/lib/validators";
 import Spiner from './Spiner';
-import { mapActions } from "vuex";
-import Swal from 'sweetalert2';
+
 
 export default {
     name: 'CustomerForm',
     components: {
         Spiner,
-        Swal
     },
     data() {
         return {
-            isLoading: false,
             customer: {
                 name: null,
                 lastName: null,
@@ -122,6 +122,15 @@ export default {
             },
             submitted: false
         }
+    },
+    props: {
+        myCustomer: {
+            type: Object,
+            default: null
+        }
+    },
+    mounted() {
+        this.customer = {...this.myCustomer}
     },
     validations: {
         customer: {
@@ -133,38 +142,19 @@ export default {
         }
     },
     methods: {
-        ...mapActions('customers', ['addCustomer']),
-        async registerCustomer() {
-            this.isLoading = true;
+        async submitForm() {
             this.submitted = true;
-
             this.$v.$touch();
             if (this.$v.$invalid) {
-                this.isLoading = false;
                 return;
             }
-            this.addCustomer({customer:this.customer, apolloClient: this.$apollo})
-            .then(() => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Cliente agregado exitosamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                setTimeout(() => {
-                    this.isLoading = false;
-                    this.$router.push({name: 'dashboard'});
-                }, 1500)
-            })
-            .catch(error => {
-                console.error(error.message);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: error.message
-                });
-                this.isLoading = false;
-            })
+            if (this.myCustomer === null) {
+                this.$emit('add-customer', this.customer);
+            }
+
+            if (this.myCustomer !== null) {
+                this.$emit('edit-customer', this.customer);
+            }
         }
     }
 }
