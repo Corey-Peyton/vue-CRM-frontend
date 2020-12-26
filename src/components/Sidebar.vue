@@ -25,21 +25,21 @@
                     :active="routeName === 'dashboard'" 
                     path="dashboard"
                 >
-                    <customers-icon width="20" class="mr-3"/>
+                    <customers-icon width="25" class="mr-3 ml-4"/>
                     <p style="width:50px" class="text-left">Clientes</p>
                 </sidebar-link>
                 <sidebar-link 
                     :active="routeName === 'products'" 
                     path="productos"
                 >
-                    <products-icon width="20" class="mr-3"/>
+                    <products-icon width="25" class="mr-3 ml-4"/>
                     <p style="width:50px" class="text-left">Productos</p>
                 </sidebar-link>
                 <sidebar-link 
                     :active="routeName === 'pedidos'" 
                     path="pedidos"
                 >
-                    <orders-icon width="20" class="mr-3"/>
+                    <orders-icon width="25" class="mr-3 ml-4"/>
                     <p style="width:50px" class="text-left">Pedidos</p>
                 </sidebar-link>
                 <hr class="border border-blue-300 mx-2">
@@ -47,7 +47,7 @@
                     :active="routeName === 'about'" 
                     path="nosotros"
                 >
-                    <about-us-icon width="20" class="mr-3"/>
+                    <about-us-icon width="25" class="mr-3 ml-4"/>
                     <p style="width:50px" class="text-left">Nosotros</p>
                     
                 </sidebar-link>
@@ -61,7 +61,7 @@
                                 focus:bg-gray-400 focus:outline-none focus:shadow-outline" 
                         href="#"
                     >
-                        <logout-icon width="20" class="mr-3"/>
+                        <logout-icon width="25" class="mr-3 ml-4"/>
                         <p style="width:50px" class="text-left">Salir</p> 
                     </a>
                 </button>
